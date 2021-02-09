@@ -38,12 +38,18 @@ import (
 	"github.com/cilium/cilium/pkg/types"
 	"github.com/cilium/ebpf"
 	"github.com/cilium/ebpf/perf"
+	. "gopkg.in/check.v1"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/sys/unix"
 )
+
+// Hook up gocheck into the "go test" runner.
+type BpfProgTestSuite struct{}
+
+var _ = Suite(&BpfProgTestSuite{})
 
 type ct4GlobalMap map[ctmap.CtKey4Global]ctmap.CtEntry
 
