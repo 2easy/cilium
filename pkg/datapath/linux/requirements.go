@@ -148,9 +148,7 @@ func CheckMinRequirements() {
 		probeManager := probes.NewProbeManager()
 		if err := probeManager.SystemConfigProbes(); err != nil {
 			errMsg := "BPF system config check: NOT OK."
-			if errors.Is(err, probes.ErrKernelConfigNotFound) {
-				log.WithError(err).Info(errMsg)
-			} else {
+			if !errors.Is(err, probes.ErrKernelConfigNotFound) {
 				log.WithError(err).Warn(errMsg)
 			}
 		}
